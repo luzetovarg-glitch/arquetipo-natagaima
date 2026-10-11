@@ -1,0 +1,446 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>El arquetipo de la candidata · Norma Silva</title>
+<meta name="description" content="Diez preguntas para identificar el personaje politico con el que Norma Silva llega a la Alcaldia de Natagaima.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&display=swap">
+<style>
+:root{
+  --bg:#F6F4EF; --surface:#FFFFFF; --ink:#1F2733; --muted:#677181; --rule:#E4E1D9;
+  --blue:#1F68AF; --blue-soft:#E9F1F9; --blue-line:#CFE2F5; --gold:#C8A44B; --alert:#C25A1E;
+  --display:"Source Serif 4", Georgia, "Times New Roman", serif;
+  --body:"Source Sans 3", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#141A22; --surface:#1C242F; --ink:#EDF1F5; --muted:#9BA7B6; --rule:#2C3745;
+  --blue:#75B6EA; --blue-soft:#1B2A3A; --blue-line:#2E4562; --gold:#D8BC74; --alert:#E8894F;
+  color-scheme:dark; } }
+:root[data-theme="dark"]{
+  --bg:#141A22; --surface:#1C242F; --ink:#EDF1F5; --muted:#9BA7B6; --rule:#2C3745;
+  --blue:#75B6EA; --blue-soft:#1B2A3A; --blue-line:#2E4562; --gold:#D8BC74; --alert:#E8894F;
+  color-scheme:dark; }
+*{box-sizing:border-box}
+html,body{margin:0}
+img{max-width:100%}
+[hidden]{display:none !important}
+body{background:var(--bg); color:var(--ink); font-family:var(--body); font-size:16px; line-height:1.5;
+  padding-inline:16px; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px)}
+.wrap{max-width:720px; margin:0 auto; padding-block:28px 56px}
+header.top{border-bottom:2px solid var(--blue); padding-bottom:16px; margin-bottom:22px}
+.eyebrow{font-size:11px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--blue); margin:0 0 8px}
+h1{font-family:var(--display); font-size:clamp(26px,5.4vw,36px); line-height:1.12; font-weight:700; margin:0 0 10px; text-wrap:balance}
+.lede{color:var(--muted); font-size:15px; margin:0; max-width:62ch}
+fieldset{border:0; margin:0; padding:0}
+legend{padding:0}
+.rolerow{display:flex; gap:10px; flex-wrap:wrap; margin-top:12px}
+.role{flex:1 1 180px; min-width:0}
+.role input{position:absolute; opacity:0; pointer-events:none}
+.role span{display:block; border:1.5px solid var(--rule); border-radius:6px; background:var(--surface);
+  padding:11px 14px; font-size:14.5px; font-weight:600; cursor:pointer}
+.role input:checked + span{border-color:var(--blue); background:var(--blue-soft); color:var(--blue)}
+.role input:focus-visible + span{outline:2px solid var(--gold); outline-offset:2px}
+.q{background:var(--surface); border:1px solid var(--rule); border-radius:6px; padding:16px 18px; margin-top:14px}
+.q[data-missing="1"]{border-color:var(--alert)}
+.qn{font-size:11px; font-weight:700; letter-spacing:.1em; color:var(--blue); margin:0 0 6px}
+.qt{font-family:var(--display); font-size:17.5px; font-weight:600; line-height:1.3; margin:0 0 12px; text-wrap:balance}
+.opts{display:flex; flex-direction:column; gap:7px}
+.opt{position:relative}
+.opt input{position:absolute; opacity:0; pointer-events:none}
+.opt span{display:block; border:1px solid var(--rule); border-radius:5px; padding:9px 12px; font-size:14.5px; cursor:pointer}
+.opt input:checked + span{border-color:var(--blue); background:var(--blue-soft); box-shadow:inset 3px 0 0 var(--blue)}
+.opt input:focus-visible + span{outline:2px solid var(--gold); outline-offset:2px}
+.actions{display:flex; gap:12px; align-items:center; flex-wrap:wrap; margin-top:22px}
+button{font-family:var(--body); font-size:15px; font-weight:700; border-radius:6px; cursor:pointer;
+  padding:12px 22px; border:1.5px solid var(--blue); background:var(--blue); color:#fff}
+button.ghost{background:transparent; color:var(--blue)}
+button.mini{padding:5px 12px; font-size:13px; border-radius:5px}
+button:focus-visible{outline:2px solid var(--gold); outline-offset:2px}
+.msg{font-size:13.5px; color:var(--alert); font-weight:600}
+.result{border:1.5px solid var(--blue); border-radius:6px; background:var(--surface); padding:20px; margin-top:28px}
+.result h2{font-family:var(--display); font-size:24px; margin:4px 0 2px; font-weight:700}
+.lema{font-style:italic; color:var(--blue); font-size:15.5px; margin:0 0 14px}
+.grid2{display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:12px}
+.cell{min-width:0}
+.cell h3{font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); margin:0 0 4px; font-weight:700}
+.cell p{margin:0; font-size:14px}
+.cell.warn h3{color:var(--alert)}
+.scores{margin-top:16px; border-top:1px solid var(--rule); padding-top:12px}
+.srow{display:grid; grid-template-columns:118px 1fr 32px; gap:8px; align-items:center; font-size:13px; margin-bottom:5px}
+.srow .bar{height:9px; border-radius:3px; background:var(--blue-line)}
+.srow .bar i{display:block; height:100%; border-radius:3px; background:var(--blue)}
+.srow .n{text-align:right; font-variant-numeric:tabular-nums; color:var(--muted)}
+section.board{margin-top:36px; border-top:2px solid var(--blue); padding-top:18px}
+section.board h2{font-family:var(--display); font-size:21px; margin:0 0 4px}
+.boardsub{color:var(--muted); font-size:14px; margin:0 0 16px; max-width:62ch}
+.cols{display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:16px}
+.col{background:var(--surface); border:1px solid var(--rule); border-radius:6px; padding:14px 16px; min-width:0}
+.col h3{font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--blue); margin:0 0 2px; font-weight:700}
+.col .count{font-size:12.5px; color:var(--muted); margin:0 0 12px}
+.brow{display:grid; grid-template-columns:1fr auto 30px; gap:8px; align-items:center; margin-bottom:9px; font-size:13.5px}
+.brow .lbl{min-width:0}
+.brow .lbl b{display:block; font-weight:600}
+.brow .track{display:block; height:8px; border-radius:3px; background:var(--blue-line); margin-top:4px}
+.brow .track i{display:block; height:100%; border-radius:3px; background:var(--blue)}
+.brow .track i.g{background:var(--gold)}
+.brow .n{text-align:right; font-variant-numeric:tabular-nums; color:var(--muted)}
+.verdict{margin-top:16px; border:1px solid var(--blue-line); background:var(--blue-soft); border-radius:6px; padding:12px 14px; font-size:14px}
+.tools{display:flex; gap:10px; flex-wrap:wrap; margin-top:14px; align-items:center}
+.tools .hint{font-size:12.5px; color:var(--muted)}
+footer{margin-top:34px; border-top:1px solid var(--rule); padding-top:14px; color:var(--muted); font-size:12.5px}
+@media (prefers-reduced-motion: no-preference){ .bar i,.track i{transition:width .35s ease} }
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <p class="eyebrow">Ruta Ganadora Tolima &middot; M&oacute;dulo 2 &middot; Parte C</p>
+  <h1>El arquetipo de la candidata</h1>
+  <p class="lede">Diez preguntas para nombrar el personaje pol&iacute;tico con el que Norma Silva llega a la Alcald&iacute;a de Natagaima. Dos minutos. La candidata responde sobre s&iacute; misma; cada integrante del equipo responde sobre ella.</p>
+</header>
+
+<fieldset>
+  <legend class="eyebrow">Qui&eacute;n responde</legend>
+  <div class="rolerow">
+    <label class="role"><input type="radio" name="rol" id="rolA" value="candidata"><span>Soy la candidata</span></label>
+    <label class="role"><input type="radio" name="rol" id="rolB" value="equipo"><span>Soy del equipo</span></label>
+  </div>
+</fieldset>
+
+<form id="form" novalidate></form>
+
+<div class="actions">
+  <button id="send" type="button">Ver mi resultado</button>
+  <button id="again" type="button" class="ghost" hidden>Responder de nuevo</button>
+  <span class="msg" id="msg" hidden></span>
+</div>
+
+<div id="result" hidden></div>
+
+<section class="board">
+  <h2>Tablero del grupo</h2>
+  <p class="boardsub">Cada respuesta se suma a estas dos columnas. El hallazgo es la diferencia entre ellas: si el equipo no la lee igual que ella, hay un problema de mensaje antes de escribir el primer argumento.</p>
+  <div class="cols">
+    <div class="col"><h3>Como se ve ella</h3><p class="count" id="cA">Sin respuestas todav&iacute;a</p><div id="bA"><p class="boardsub" style="margin:0">Aparece cuando la candidata env&iacute;e sus respuestas.</p></div></div>
+    <div class="col"><h3>Como la ve el equipo</h3><p class="count" id="cB">Sin respuestas todav&iacute;a</p><div id="bB"><p class="boardsub" style="margin:0">Aparece con la primera respuesta del equipo.</p></div></div>
+  </div>
+  <div class="verdict" id="verdict" hidden></div>
+  <div class="tools">
+    <button id="reset" type="button" class="ghost mini">Borrar el conteo</button>
+    <span class="hint" id="modo"></span>
+  </div>
+</section>
+
+<footer>
+  Instrumento de taller, no una prueba psicom&eacute;trica: sirve para abrir la conversaci&oacute;n sobre el mensaje, no para clasificar a nadie. No se piden ni se guardan nombres.
+</footer>
+</div>
+
+<script>
+const ARQ = {
+  g:{n:"La Gestora", lema:"Yo traigo los recursos y los pongo a andar.",
+     f:"La articulación con la Gobernación es su argumento natural: el voto le llega por resultados verificables, no por simpatía.",
+     r:"Si no puede mostrar gestiones propias con fecha y monto, su promesa suena igual a la de todos los demás.",
+     e:"Tres gestiones concretas, cada una con fecha, valor y fuente verificable.",
+     x:"Prometer obras cuya financiación no depende de la Alcaldía."},
+  c:{n:"La Cercana", lema:"Yo estoy donde está la gente.",
+     f:"Convierte presencia en voto y resiste bien el ataque personal, porque la gente la conoce de primera mano.",
+     r:"La presencia no escala sola: se concentra donde ya la quieren y deja vacíos los puestos grandes.",
+     e:"Un plan de salidas que cubra los tres puestos clase A, no solo donde ya tiene votos.",
+     x:"Confundir el cariño de la gente con la intención de voto."},
+  t:{n:"La Técnica", lema:"Yo sé cómo se hace y lo puedo demostrar.",
+     f:"Creíble ante el sector institucional, los gremios y en cualquier debate con cifras de por medio.",
+     r:"Habla un idioma que no vota: la precisión se lee como distancia.",
+     e:"Cada cifra traducida a una consecuencia concreta para una familia del municipio.",
+     x:"Ganar el debate y perder la plaza."},
+  r:{n:"La Renovadora", lema:"Así no se puede seguir.",
+     f:"Moviliza el descontento y marca diferencia frente a la continuidad administrativa.",
+     r:"Si el aval viene del mismo partido que respaldó a la administración saliente, el mensaje se cae solo.",
+     e:"Decir exactamente qué cambia y cómo se verifica, no contra quién va dirigido.",
+     x:"Quedarse en la denuncia sin propuesta ejecutable."},
+  d:{n:"La Defensora", lema:"A Natagaima no la van a seguir pasando por encima.",
+     f:"Alta intensidad emocional: consolida la base y moviliza en la recta final.",
+     r:"Polariza, y en un municipio donde hay que sumar más de cuatro mil votos nuevos, cierra puertas.",
+     e:"La amenaza que denuncia debe ser verificable, concreta y con responsable identificado.",
+     x:"Necesitar siempre un enemigo para tener discurso."},
+  u:{n:"La Cuidadora", lema:"Nadie se queda atrás.",
+     f:"Conecta con los puestos rurales y con el voto de mujeres, que es donde está la diferencia por cerrar.",
+     r:"La leen para una secretaría social y no para la Alcaldía: capacidad de gobierno en duda.",
+     e:"Un programa social con costo estimado y fuente de financiación identificada.",
+     x:"Hablar solo de a quién ayuda y nunca de cómo administra."}
+};
+const ORDER = ["g","c","t","r","d","u"];
+
+const Q = [
+ ["Si tuviera que explicar en una sola frase por qué debe ser alcaldesa, diría…", [
+   ["Porque sé gestionar y traer los recursos que el municipio no ha podido conseguir.","g"],
+   ["Porque conozco cada vereda y la gente sabe quién soy.","c"],
+   ["Porque aquí se gobierna sin plan y yo sé planear.","t"],
+   ["Porque esto no puede seguir como está.","r"]]],
+ ["Lo primero que haría en los primeros cien días…", [
+   ["Destrabar los proyectos que están frenados.","g"],
+   ["Recorrer los ocho puestos y escuchar antes de decidir.","c"],
+   ["Ordenar las cuentas y saber con qué cuenta realmente el municipio.","t"],
+   ["Mostrar públicamente lo que me encontré.","r"]]],
+ ["Cuando algo sale mal en el municipio, su primera reacción es…", [
+   ["Buscar a quién llamar para resolverlo.","g"],
+   ["Ir hasta el sitio.","c"],
+   ["Pedir las cifras antes de opinar.","t"],
+   ["Salir a defender al municipio frente a quien lo causó.","d"]]],
+ ["La frase que más le dicen en la calle es…", [
+   ["«Usted sí cumple.»","g"],
+   ["«Usted sí viene por aquí.»","c"],
+   ["«Usted sí sabe del tema.»","t"],
+   ["«Usted sí nos ayuda.»","u"]]],
+ ["Lo que más le molesta de la política del municipio…", [
+   ["Que se prometen obras que nunca se gestionan.","g"],
+   ["Que solo aparecen en campaña.","c"],
+   ["Que se improvisa todo.","t"],
+   ["Que siempre son los mismos.","r"]]],
+ ["Si tuviera que elegir una sola bandera de campaña…", [
+   ["Obras: vías, agua y servicios.","g"],
+   ["Presencia: una alcaldía que se ve en las veredas.","c"],
+   ["Defender lo que es de Natagaima.","d"],
+   ["Que los que menos tienen dejen de ser los últimos.","u"]]],
+ ["Cuando la atacan en público, usted…", [
+   ["Responde con lo que ha hecho.","g"],
+   ["Devuelve la pregunta: ¿y ellos qué hicieron?","r"],
+   ["Sale a defender a su gente y a su equipo.","d"],
+   ["Baja el tono y habla de las personas afectadas.","u"]]],
+ ["El tipo de reunión donde se siente más cómoda…", [
+   ["Una casa, con diez personas.","c"],
+   ["Una mesa técnica con las cifras encima.","t"],
+   ["Un debate público.","r"],
+   ["Una reunión con madres comunitarias o adultos mayores.","u"]]],
+ ["Lo que su equipo diría que es su mayor virtud…", [
+   ["No suelta un trámite hasta que sale.","g"],
+   ["Nadie recorre más territorio.","c"],
+   ["No se deja de nadie.","d"],
+   ["Le importa la gente de verdad.","u"]]],
+ ["Lo último a lo que renunciaría en su campaña…", [
+   ["A tener las cifras bien.","t"],
+   ["A decir lo que nadie se atreve a decir.","r"],
+   ["A defender al municipio.","d"],
+   ["A atender a la gente que nadie atiende.","u"]]]
+];
+
+var form = document.getElementById("form");
+Q.forEach(function(q,i){
+  var d=document.createElement("div"); d.className="q"; d.id="q"+i;
+  var n=document.createElement("p"); n.className="qn"; n.textContent="PREGUNTA "+String(i+1); d.appendChild(n);
+  var t=document.createElement("p"); t.className="qt"; t.textContent=q[0]; d.appendChild(t);
+  var o=document.createElement("div"); o.className="opts";
+  q[1].forEach(function(pair,j){
+    var l=document.createElement("label"); l.className="opt";
+    var inp=document.createElement("input"); inp.type="radio"; inp.name="q"+i; inp.value=pair[1]; inp.id="q"+i+"o"+j;
+    var sp=document.createElement("span"); sp.textContent=pair[0];
+    inp.addEventListener("change", function(){ d.dataset.missing="0"; });
+    l.appendChild(inp); l.appendChild(sp); o.appendChild(l);
+  });
+  d.appendChild(o); form.appendChild(d);
+});
+
+function tally(){
+  var sc={g:0,c:0,t:0,r:0,d:0,u:0}, missing=[];
+  Q.forEach(function(q,i){
+    var sel=form.querySelector('input[name="q'+i+'"]:checked');
+    if(sel){ sc[sel.value]++; } else { missing.push(i); }
+  });
+  return {sc:sc, missing:missing};
+}
+function winner(sc){
+  var best=ORDER[0];
+  ORDER.forEach(function(k){ if(sc[k]>sc[best]) best=k; });
+  return best;
+}
+
+function renderResult(key,sc){
+  var a=ARQ[key];
+  var max=1; ORDER.forEach(function(k){ if(sc[k]>max) max=sc[k]; });
+  var rows=ORDER.slice().sort(function(x,y){ return sc[y]-sc[x]; }).map(function(k){
+    return '<div class="srow"><span>'+ARQ[k].n+'</span><span class="bar"><i style="width:'+Math.round(sc[k]/max*100)+'%"></i></span><span class="n">'+sc[k]+'</span></div>';
+  }).join("");
+  var r=document.getElementById("result");
+  r.className="result";
+  r.innerHTML='<p class="eyebrow">Su arquetipo dominante</p><h2>'+a.n+'</h2><p class="lema">“'+a.lema+'”</p>'+
+    '<div class="grid2">'+
+    '<div class="cell"><h3>Dónde es fuerte</h3><p>'+a.f+'</p></div>'+
+    '<div class="cell warn"><h3>Dónde se rompe</h3><p>'+a.r+'</p></div>'+
+    '<div class="cell"><h3>Qué evidencia necesita</h3><p>'+a.e+'</p></div>'+
+    '<div class="cell warn"><h3>Error típico</h3><p>'+a.x+'</p></div>'+
+    '</div><div class="scores">'+rows+'</div>';
+  r.hidden=false;
+  r.scrollIntoView({behavior:"smooth",block:"start"});
+}
+
+/* ------------------------------------------------------------------
+   COLECTOR COMPARTIDO
+   Con estos tres valores vacios la pagina cuenta solo en este navegador.
+   Al llenarlos, cada celular envia su resultado a un formulario de Google
+   y el tablero se arma leyendo la hoja de respuestas publicada como CSV,
+   asi que todos los telefonos ven el mismo conteo.
+   ------------------------------------------------------------------ */
+var COLECTOR = {
+  post: "",        // .../formResponse del formulario
+  entryRol: "",    // entry.XXXXXXX  -> quien responde
+  entryArq: "",    // entry.YYYYYYY  -> arquetipo
+  csv: ""          // hoja de respuestas publicada como CSV
+};
+var COMPARTIDO = !!(COLECTOR.post && COLECTOR.entryRol && COLECTOR.entryArq);
+
+var KEY="arquetipo_norma_silva_v1";
+function load(){
+  try{ var raw=localStorage.getItem(KEY); if(raw) return JSON.parse(raw); }catch(e){}
+  return {candidata:{},equipo:{}};
+}
+function save(st){ try{ localStorage.setItem(KEY, JSON.stringify(st)); }catch(e){} }
+
+var cA=document.getElementById("cA"), cB=document.getElementById("cB");
+var bA=document.getElementById("bA"), bB=document.getElementById("bB");
+var verdict=document.getElementById("verdict");
+var remoto=null;   // conteo leido de la hoja, cuando existe
+
+function bars(el,counts,total,gold){
+  if(!total){ el.innerHTML='<p class="boardsub" style="margin:0">Sin respuestas todavía.</p>'; return; }
+  var max=1; ORDER.forEach(function(k){ if((counts[k]||0)>max) max=counts[k]; });
+  el.innerHTML=ORDER.slice().sort(function(x,y){ return (counts[y]||0)-(counts[x]||0); }).map(function(k){
+    return '<div class="brow"><span class="lbl"><b>'+ARQ[k].n+'</b><span class="track"><i class="'+(gold?"g":"")+
+      '" style="width:'+Math.round((counts[k]||0)/max*100)+'%"></i></span></span><span></span><span class="n">'+(counts[k]||0)+'</span></div>';
+  }).join("");
+}
+function sum(o){ var s=0; ORDER.forEach(function(k){ s+=(o[k]||0); }); return s; }
+function winnerOf(o){ return winner(Object.assign({g:0,c:0,t:0,r:0,d:0,u:0},o)); }
+
+function paint(){
+  var st = remoto || load();
+  var nA=sum(st.candidata), nB=sum(st.equipo);
+  cA.textContent = nA ? (nA===1?"1 respuesta":nA+" respuestas") : "Sin respuestas todavía";
+  cB.textContent = nB ? (nB===1?"1 respuesta":nB+" respuestas") : "Sin respuestas todavía";
+  bars(bA,st.candidata,nA,true); bars(bB,st.equipo,nB,false);
+  if(nA&&nB){
+    var wa=winnerOf(st.candidata), wb=winnerOf(st.equipo);
+    verdict.innerHTML = (wa===wb)
+      ? "<b>Coinciden.</b> Ella y el equipo la leen como <b>"+ARQ[wa].n+"</b>. El mensaje de campaña puede construirse sobre ese personaje sin traducción previa."
+      : "<b>No coinciden.</b> Ella se ve como <b>"+ARQ[wa].n+"</b> y el equipo la ve como <b>"+ARQ[wb].n+"</b>. Esa distancia es la que hay que resolver antes de escribir el mensaje: si el equipo no la lee igual que ella, el electorado tampoco.";
+    verdict.hidden=false;
+  } else { verdict.hidden=true; }
+}
+
+/* --- envio al formulario, invisible para quien responde --- */
+function enviarRemoto(rol, key){
+  if(!COMPARTIDO) return;
+  try{
+    var fd=new FormData();
+    fd.append(COLECTOR.entryRol, rol==="candidata" ? "La candidata" : "El equipo");
+    fd.append(COLECTOR.entryArq, ARQ[key].n);
+    fetch(COLECTOR.post, {method:"POST", mode:"no-cors", body:fd}).then(function(){
+      setTimeout(leerHoja, 1200);
+    }).catch(function(){});
+  }catch(e){}
+}
+
+/* --- lectura de la hoja publicada --- */
+function filasCSV(txt){
+  var filas=[], f=[], v="", q=false;
+  for(var i=0;i<txt.length;i++){
+    var ch=txt[i];
+    if(q){
+      if(ch === '"'){ if(txt[i+1] === '"'){ v+='"'; i++; } else { q=false; } }
+      else { v+=ch; }
+    } else if(ch === '"'){ q=true; }
+    else if(ch === ','){ f.push(v); v=""; }
+    else if(ch === '\n'){ f.push(v); filas.push(f); f=[]; v=""; }
+    else if(ch !== '\r'){ v+=ch; }
+  }
+  if(v.length||f.length){ f.push(v); filas.push(f); }
+  return filas;
+}
+function porNombre(n){
+  var t=(n||"").toLowerCase();
+  for(var i=0;i<ORDER.length;i++){ if(ARQ[ORDER[i]].n.toLowerCase() === t) return ORDER[i]; }
+  return null;
+}
+function leerHoja(){
+  if(!COLECTOR.csv) return;
+  fetch(COLECTOR.csv + (COLECTOR.csv.indexOf("?")<0?"?":"&") + "t=" + Date.now())
+    .then(function(r){ return r.text(); })
+    .then(function(txt){
+      var filas=filasCSV(txt);
+      if(filas.length<1) return;
+      var head=filas[0].map(function(h){ return (h||"").toLowerCase(); });
+      var iRol=-1, iArq=-1;
+      head.forEach(function(h,i){
+        if(iRol<0 && h.indexOf("responde")>=0) iRol=i;
+        if(iArq<0 && h.indexOf("arquetipo")>=0) iArq=i;
+      });
+      if(iRol<0) iRol=1;
+      if(iArq<0) iArq=2;
+      var st={candidata:{},equipo:{}};
+      filas.slice(1).forEach(function(f){
+        var k=porNombre(f[iArq]); if(!k) return;
+        var grupo=((f[iRol]||"").toLowerCase().indexOf("candidata")>=0) ? "candidata" : "equipo";
+        st[grupo][k]=(st[grupo][k]||0)+1;
+      });
+      remoto=st; paint();
+    })
+    .catch(function(){});
+}
+
+var send=document.getElementById("send"), again=document.getElementById("again"), msg=document.getElementById("msg");
+send.addEventListener("click", function(){
+  var rol=document.querySelector('input[name="rol"]:checked');
+  var res=tally();
+  if(!rol || res.missing.length){
+    res.missing.forEach(function(i){ document.getElementById("q"+i).dataset.missing="1"; });
+    msg.textContent = !rol ? "Falta indicar quién responde." : "Faltan "+res.missing.length+(res.missing.length===1?" pregunta.":" preguntas.");
+    msg.hidden=false;
+    var first=document.getElementById("q"+(res.missing.length?res.missing[0]:0));
+    if(first) first.scrollIntoView({behavior:"smooth",block:"center"});
+    return;
+  }
+  msg.hidden=true;
+  var key=winner(res.sc);
+  renderResult(key,res.sc);
+  var st=load();
+  st[rol.value][key]=(st[rol.value][key]||0)+1;
+  save(st);
+  enviarRemoto(rol.value, key);
+  if(!COMPARTIDO) paint();
+  again.hidden=false;
+  send.textContent="Enviar otra respuesta";
+});
+again.addEventListener("click", function(){
+  form.querySelectorAll("input").forEach(function(i){ i.checked=false; });
+  document.querySelectorAll(".q").forEach(function(d){ d.dataset.missing="0"; });
+  var rb=document.querySelector('input[name="rol"]:checked'); if(rb) rb.checked=false;
+  document.getElementById("result").hidden=true;
+  again.hidden=true; msg.hidden=true;
+  window.scrollTo({top:0,behavior:"smooth"});
+});
+document.getElementById("reset").addEventListener("click", function(){
+  if(COMPARTIDO){ leerHoja(); return; }
+  try{ localStorage.removeItem(KEY); }catch(e){}
+  remoto=null; paint();
+});
+
+/* arranque */
+(function(){
+  var nota=document.getElementById("modo"), btn=document.getElementById("reset");
+  if(COMPARTIDO){
+    nota.textContent="Las respuestas de todos los celulares se suman en la hoja del grupo. El tablero se actualiza solo.";
+    btn.textContent="Actualizar tablero";
+    leerHoja();
+    setInterval(leerHoja, 10000);
+  } else {
+    nota.textContent="El conteo se guarda solo en este navegador. No se envía a ningún servidor.";
+    btn.textContent="Borrar el conteo";
+  }
+  paint();
+})();
+</script>
+</body>
+</html>
