@@ -130,9 +130,10 @@
 
 <script>
 /* ===== CONFIGURACIÓN ===== */
-// ▼▼ CAMBIE AQUÍ el número de WhatsApp que recibe los votos: 57 + celular, sin + ni espacios. Ejemplo: "573001234567"
-// Si lo deja vacío (""), cada persona escoge a quién enviarlo.
+// ▼▼ Número de WhatsApp de respaldo: 57 + celular, sin + ni espacios. Ejemplo: "573001234567"
 const WHATSAPP = "";
+// ▼▼ Dirección de la Hoja de Google (Apps Script, termina en /exec). Si está vacía, los votos se envían por WhatsApp.
+const SHEETS_URL = "";
 const MAX_TEMAS = 3, MAX_SUB = 2;
 
 const TEMAS = [
@@ -168,7 +169,7 @@ const NUMS = ["1️⃣","2️⃣","3️⃣"];
 let paso = 0, sub = 0;
 let v = nuevo();
 function nuevo(){ return {barrio:"", nombre:"", rol:"p", temas:[], sub:{}, comentario:"", acepto:false}; }
-let db=null, user=null, equipo=false, votos=[], guardado=null, cargando=true, errorDb="";
+let db=null, user=null, equipo=false, votos=[], guardado=null, cargando=true, errorDb="", enviado=null;
 
 const $ = s=>document.querySelector(s);
 const esc = s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
@@ -274,6 +275,9 @@ function final(){
       $("#next").disabled=true; $("#next").textContent="Guardando…";
       try{ await db.collection("votos").doc("u-"+Date.now().toString(36)+Math.random().toString(36).slice(2,6)).set(aDoc(v,"equipo")); guardado=true; }
       catch(e){ guardado=false; }
+    } else if(SHEETS_URL){
+      $("#next").disabled=true; $("#next").textContent="Enviando…";
+      enviado = await enviarHoja(filaHoja(v));
     }
     paso=5; render();
   };
@@ -291,6 +295,25 @@ function mensaje(x){
 }
 function aDoc(x,origen){ return {barrio:x.barrio.trim(), nombre:x.nombre.trim(), rol:x.rol, temas:x.temas.slice(), sub:JSON.parse(JSON.stringify(x.sub)), comentario:x.comentario||"", origen, t:new Date().toISOString(), codigo:codigo(x)}; }
 
+function filaHoja(x){
+  const rol=Object.fromEntries(ROLES); const f={barrio:x.barrio.trim(), nombre:x.nombre.trim(), rol:rol[x.rol]||"", comentario:x.comentario||"", codigo:codigo(x), id:Date.now().toString(36)+Math.random().toString(36).slice(2,8)};
+  [0,1,2].forEach(i=>{const id=x.temas[i]; f["tema"+(i+1)]=id?T[id].n:""; f["sub"+(i+1)]=id?(x.sub[id]||[]).map(s=>subName(id,s)).join("; "):"";});
+  return f;
+}
+function cola(){ try{ return JSON.parse(localStorage.getItem("votosPendientes")||"[]"); }catch(e){ return []; } }
+function guardarCola(c){ try{ localStorage.setItem("votosPendientes",JSON.stringify(c)); }catch(e){} }
+async function postHoja(f){ await fetch(SHEETS_URL,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(f)}); }
+async function enviarHoja(f){
+  try{ await postHoja(f); return true; }
+  catch(e){ const c=cola(); c.push(f); guardarCola(c); return false; }
+}
+async function enviarPendientes(){
+  if(!SHEETS_URL) return; const c=cola(); if(!c.length) return; const quedan=[];
+  for(const f of c){ try{ await postHoja(f); }catch(e){ quedan.push(f); } }
+  guardarCola(quedan);
+}
+window.addEventListener("online", enviarPendientes);
+
 function gracias(){
   const msg=mensaje(v);
   const href="https://wa.me/"+WHATSAPP+"?text="+encodeURIComponent(msg);
@@ -301,7 +324,8 @@ function gracias(){
   app.innerHTML = `
   <div class="hero"><h1>¡Gracias, líder! 🙌</h1><p>Su voz ayuda a escoger las mesas de trabajo con Óscar Barreto.</p></div>
   ${top}
-  ${equipo && guardado ? "" : `
+  ${!equipo && SHEETS_URL ? (enviado ? `<div class="ok">✅ ¡Listo! Su voto quedó guardado.</div>` : `<div class="card"><h2>📶 No hay internet ahora</h2><p class="big">Tranquilo: su voto quedó guardado en este celular y se enviará solo cuando vuelva el internet.</p><p class="muted">Su código es:</p><div class="codigo">${esc(codigo(v))}</div></div>`) : ""}
+  ${equipo && guardado || (!equipo && SHEETS_URL) ? "" : `
   <div class="card">
     <h2>📲 Último paso: envíe su voto</h2>
     <p class="big">Toque el botón verde. Se abre WhatsApp con su voto ya escrito. Solo toque <b>enviar</b> ➤.</p>
@@ -397,6 +421,7 @@ async function copiarTabla(){
 
 /* ===== ARRANQUE ===== */
 render();
+enviarPendientes();
 </script>
 </body>
 </html>
